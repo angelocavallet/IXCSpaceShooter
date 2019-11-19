@@ -7,5 +7,12 @@
         height: 600,
     });
 
+    let fase = new Corrida();
+
+    game.load(fase);
+
+
+    let tick = setInterval(game.update, 16);
+
 
 })();
