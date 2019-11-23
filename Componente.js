@@ -1,5 +1,5 @@
 
-class GameComponent {
+class Componente {
 
     constructor (options) {
         this.context = options.context;
@@ -8,8 +8,7 @@ class GameComponent {
         this.color = options.color;
         this.x = options.x;
         this.y = options.y;
-        this.type = options.type;
-        this.ativo = true;
+        this.tipo = options.tipo;
     }
 
     update () {
