@@ -1,7 +1,6 @@
-
 class GameComponent {
 
-    constructor (options) {
+    constructor(options) {
         this.context = options.context;
         this.width = options.width;
         this.height = options.height;
@@ -12,8 +11,7 @@ class GameComponent {
         this.ativo = true;
     }
 
-    update () {
-
+    update() {
 
 
         return this.ativo;

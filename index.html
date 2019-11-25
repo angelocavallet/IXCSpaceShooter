@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt">
-	<head>
-		<title>IXC Racing</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<style>
-			canvas {
-			    border:1px solid #d3d3d3;
-			    background-color: #f1f1f1;
-			}
-		</style>
-		<script type="text/javascript" src="GameComponent.js"></script>
-		<script type="text/javascript" src="Carro.js"></script>
-		<script type="text/javascript" src="Fase.js"></script>
-		<script type="text/javascript" src="Corrida.js"></script>
-		<script type="text/javascript" src="Game.js"></script>
-		<script type="text/javascript" src="main.js"></script>
-	</head>
-	<body>
-	
-	</body>
+<head>
+    <title>IXC Racing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        canvas {
+            border: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+		.canvas-target {
+			width: 1024px;
+			height: 800px;
+		}
+
+    </style>
+    <script type="text/javascript" src="GameComponent.js"></script>
+    <script type="text/javascript" src="Carro.js"></script>
+    <script type="text/javascript" src="Fase.js"></script>
+    <script type="text/javascript" src="Corrida.js"></script>
+    <script type="text/javascript" src="Game.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<div id="gameTarget" class="canvas-target"></div>
+</body>
 </html>

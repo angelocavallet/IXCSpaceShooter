@@ -1,7 +1,6 @@
-
 class Game {
 
-    constructor (config) {
+    constructor(config) {
         this.target = config.target;
 
         this.canvas = document.createElement("canvas");
@@ -13,17 +12,18 @@ class Game {
         this.context = this.canvas.getContext("2d");
     }
 
-    load (fase) {
+    load(fase) {
         fase.game = this;
         this.fase = fase;
+        this.fase.load();
 
     }
 
-    clear () {
+    clear() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    update () {
+    update() {
         this.clear();
         this.fase.update();
 

@@ -1,15 +1,19 @@
-
 class Fase {
 
-    constructor () {
+    constructor() {
+        this.elementos = [];
         this.terminou = false;
     }
 
-    addElemento (elemento) {
+    addElemento(elemento) {
         this.elementos.push(elemento);
     }
 
-    update () {
+    load() {
+        console.error('Função "load" não implementada!');
+    }
+
+    update() {
 
         this.elementos = this.elementos.filter((elemento) => {
 
