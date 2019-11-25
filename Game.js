@@ -2,16 +2,19 @@
 class Game {
 
     constructor (config) {
-        this.canvas = config.canvas;
-        this.canvas.width = config.width;
-        this.canvas.height = config.height;
-        this.context = this.canvas.getContext("2d");
-
         this.target = config.target;
+
+        this.canvas = document.createElement("canvas");
         this.target.appendChild(this.canvas);
+
+        this.canvas.width = this.target.offsetWidth;
+        this.canvas.height = this.target.offsetHeight;
+
+        this.context = this.canvas.getContext("2d");
     }
 
     load (fase) {
+        fase.game = this;
         this.fase = fase;
 
     }

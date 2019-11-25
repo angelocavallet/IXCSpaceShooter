@@ -1,13 +1,19 @@
 
 class Corrida extends Fase {
 
-    constructor (componentes) {
-        super(componentes);
+    constructor () {
+        super();
 
-        this.player = new Carro();
+        this.player = new Carro({
+            context: this.game.context,
+            width: 5,
+            height: 10,
+            color: 'red',
+            x: this.game.canvas.width / 2,
+            y: this.game.canvas.height / 2
+        });
 
-        this.addComponente(player);
-
+        this.addElemento(this.player);
 
     }
 

@@ -1,23 +1,21 @@
 
 class Fase {
 
-    constructor (componentes) {
-
-        this.componentes = componentes;
+    constructor () {
         this.terminou = false;
     }
 
-    addComponente (componente) {
-        this.componentes.push(componente);
+    addElemento (elemento) {
+        this.elementos.push(elemento);
     }
 
     update () {
 
-        this.componentes = this.componentes.filter((componente) => {
+        this.elementos = this.elementos.filter((elemento) => {
 
-            componente.update();
+            elemento.update();
 
-            return !componente.terminou ? componente : false;
+            return !elemento.terminou ? elemento : false;
         });
 
     }
