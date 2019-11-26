@@ -1,7 +1,8 @@
 class Carro extends GameComponent {
 
-    constructor () {
-        super();
+    constructor (options) {
+        super(options);
+        this.velocidade = options.velocidade || 10;
         this.controller = null;
     }
 
@@ -10,6 +11,20 @@ class Carro extends GameComponent {
     }
 
     update() {
+
+        //Controlando a movimentação do carro
+        if (this.controller.up) {
+            this.y -= this.velocidade;
+        }
+        if (this.controller.down) {
+            this.y += this.velocidade;
+        }
+        if (this.controller.left) {
+            this.x -= this.velocidade;
+        }
+        if (this.controller.right) {
+            this.x += this.velocidade;
+        }
 
         //Desenha o corpo do carro
         this.context.fillStyle = this.color;

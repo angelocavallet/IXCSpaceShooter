@@ -11,6 +11,9 @@ class Corrida extends Fase {
             y: this.game.canvas.height / 2
         });
 
+        this.player.setController(new KeyboardController(window));
+        this.player.controller.bind();
+
         this.addElemento(this.player);
     }
 
