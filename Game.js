@@ -2,6 +2,7 @@ class Game {
 
     constructor(config) {
         this.target = config.target;
+        this.fps = config.fps;
 
         this.canvas = document.createElement("canvas");
         this.target.appendChild(this.canvas);
@@ -21,6 +22,16 @@ class Game {
 
     clear() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    start() {
+        this.tick = setInterval(() => {
+            this.update();
+        }, 1000/this.fps);
+    }
+
+    stop() {
+        clearInterval(this.tick);
     }
 
     update() {

@@ -6,6 +6,7 @@ class KeyboardController {
         this.down = false;
         this.left = false;
         this.right = false;
+        this.atira = false;
 
         this.onKeyDown = (event) => {
             return this.handler(event, true);
@@ -31,6 +32,7 @@ class KeyboardController {
         this.right = false;
         this.up = false;
         this.down = false;
+        this.atira = false;
     }
 
     handler(event, status) {
@@ -46,6 +48,9 @@ class KeyboardController {
                 break;
             case 'ArrowUp':
                 this.up = status;
+                break;
+            case ' ':
+                this.atira = status;
                 break;
             default:
                 return true;

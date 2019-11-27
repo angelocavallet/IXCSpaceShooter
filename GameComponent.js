@@ -4,15 +4,21 @@ class GameComponent {
         this.context = options.context;
         this.width = options.width;
         this.height = options.height;
-        this.color = options.color;
         this.x = options.x;
         this.y = options.y;
-        this.type = options.type;
+        this.tipo = options.tipo;
         this.ativo = true;
     }
 
-    update() {
+    get centroX() {
+        return (this.x +(this.width/2));
+    }
 
+    get centroY() {
+        return (this.y +(this.height/2));
+    }
+
+    update() {
 
         return this.ativo;
     }

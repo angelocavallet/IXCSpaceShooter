@@ -1,24 +1,14 @@
-(function () {
-    "use strict";
+window.onload = function () {
 
-    let observer = new MutationObserver(function () {
-        if (document.body) {
-
-            let game = new Game({
-                target: document.getElementById('gameTarget')
-            });
-
-            let fase = new Corrida();
-
-            game.load(fase);
-
-
-            let tick = setInterval(() => {
-                game.update();
-            }, 16);
-
-            observer.disconnect();
-        }
+    let game = new Game({
+        target: document.getElementById('gameTarget'),
+        fps: 60
     });
-    observer.observe(document.documentElement, {childList: true});
-})();
+
+    let fase = new Missao();
+
+    game.load(fase);
+
+    game.start();
+
+};

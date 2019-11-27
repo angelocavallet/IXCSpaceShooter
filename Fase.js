@@ -6,6 +6,7 @@ class Fase {
     }
 
     addElemento(elemento) {
+        elemento.fase = this;
         this.elementos.push(elemento);
     }
 
@@ -15,13 +16,19 @@ class Fase {
 
     update() {
 
-        this.elementos = this.elementos.filter((elemento) => {
+        // for (let i=0; i < this.elementos.length; i++) {
+        //
+        //     this.elementos[i].update();
+        //
+        // }
 
+        this.elementos.map((elemento) => {
             elemento.update();
-
-            return !elemento.terminou ? elemento : false;
         });
 
+        this.elementos = this.elementos.filter((elemento) => {
+            return elemento.ativo;
+        });
     }
 
 }
