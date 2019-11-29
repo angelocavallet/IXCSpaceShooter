@@ -16,7 +16,7 @@ class Game {
     load(fase) {
         fase.game = this;
         this.fase = fase;
-        this.fase.load();
+        this.fase.load(1);
 
     }
 

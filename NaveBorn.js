@@ -2,7 +2,7 @@ class NaveBorn extends GameComponent {
 
     constructor(options) {
         super(options);
-        this.velocidade = options.velocidade || 10;
+        this.velocidade = options.velocidade || 5;
         this.controller = null;
         this.ultimoTiro = new Date();
         this.tempoEntreTiros = 300;
@@ -66,55 +66,41 @@ class NaveBorn extends GameComponent {
 
     render() {
 
-        this.context.fillStyle = 'yellow';
-        //renderizando ponta da nave Borne
+        let posGrdSombreadoX = this.centroX + (this.width * 0.06);
+        let posGrdSombreadoY = this.centroY - (this.height * 0.06);
+
+        //renderizando corpo
+        let grdCorpo = this.context.createRadialGradient(
+            posGrdSombreadoX,
+            posGrdSombreadoY,
+            (this.width * 0.5),
+            posGrdSombreadoX,
+            posGrdSombreadoY,
+            (this.width * 0.9));
+        grdCorpo.addColorStop(0,'#7c7977');
+        grdCorpo.addColorStop(0.5,'#5e5b59');
+        grdCorpo.addColorStop(1,'#343434');
+        this.context.fillStyle = grdCorpo;
         this.context.beginPath();
-        this.context.lineTo(this.centroX, this.y);
-        this.context.lineTo(this.centroX + (this.width * 0.3), this.y + (this.height * 0.4));
-        this.context.lineTo(this.centroX - (this.width * 0.3), this.y + (this.height * 0.4));
-        this.context.closePath();
+        this.context.arc(this.centroX, this.centroY, this.width,0, 2 * Math.PI);
         this.context.fill();
 
 
-        this.context.fillStyle = 'red';
         //renderizando corpo
-        this.context.fillRect(
-            this.centroX - (this.width * 0.3),
-            this.y + (this.height * 0.4),
-            this.width * 0.6,
-            this.height * 0.8);
-
-
-        this.context.fillStyle = 'green';
-        //renderizando braco esquerdo
-        this.context.fillRect(
-            this.centroX - (this.width * 0.6),
-            this.centroY + (this.height * 0.4),
-            this.width * 0.3,
-            this.height * 0.2);
-
-        //renderizando braco direito
-        this.context.fillRect(
-            this.centroX + (this.width * 0.3),
-            this.centroY + (this.height * 0.4),
-            this.width * 0.3,
-            this.height * 0.2);
-
-        this.context.fillStyle = 'red';
-        //renderizando arma esquerda
-        this.context.fillRect(
-            this.centroX -this.width,
-            this.centroY +(this.height * 0.3),
-            this.width * 0.4,
-            this.height * 0.5);
-
-        //renderizando arma direita
-        this.context.fillRect(
-            this.centroX + (this.width * 0.6),
-            this.centroY +(this.height * 0.3),
-            this.width * 0.4,
-            this.height * 0.5);
-
+        let grdCabine = this.context.createRadialGradient(
+            posGrdSombreadoX,
+            posGrdSombreadoY,
+            (this.width * 0.2),
+            posGrdSombreadoX,
+            posGrdSombreadoY,
+            (this.width * 0.4));
+        grdCabine.addColorStop(0,'#00c2ff');
+        grdCabine.addColorStop(0.5,'#0071bc');
+        grdCabine.addColorStop(1,'#001985');
+        this.context.fillStyle = grdCabine;
+        this.context.beginPath();
+        this.context.arc(this.centroX, this.centroY, (this.width * 0.5),0, 2 * Math.PI);
+        this.context.fill();
     }
 
 }

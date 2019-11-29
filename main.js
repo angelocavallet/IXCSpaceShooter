@@ -2,7 +2,7 @@ window.onload = function () {
 
     let game = new Game({
         target: document.getElementById('gameTarget'),
-        fps: 60
+        fps: 120
     });
 
     let fase = new Missao();
