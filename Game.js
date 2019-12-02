@@ -37,11 +37,6 @@ class Game {
     update() {
         this.clear();
         this.fase.update();
-
-        if (this.fase.terminou) {
-            this.fase = this.fase.proximaFase;
-
-        }
     }
 
 

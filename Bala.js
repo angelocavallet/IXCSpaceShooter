@@ -11,8 +11,18 @@ class Bala extends GameComponent {
 
         this.resolveControles();
         this.render();
+        this.limpaForaDaTela();
 
         return this.ativo;
+    }
+
+    limpaForaDaTela() {
+
+        if (this.centroX < 0 || this.centroX > this.fase.game.canvas.width ||
+            this.centroY < 0 || this.centroY > this.fase.game.canvas.height) {
+            this.destroy();
+        }
+
     }
 
     resolveControles() {

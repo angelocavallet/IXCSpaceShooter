@@ -71,6 +71,11 @@ class NaveBorn extends GameComponent {
 
     }
 
+    destroy() {
+        this.controller.unbind();
+        super.destroy();
+    }
+
     render() {
 
         let posGrdSombreadoX = this.centroX + (this.width * 0.06);
@@ -115,6 +120,8 @@ class NaveBorn extends GameComponent {
 
     resolveColisao(outro) {
         if (outro.tipo === 'tiroPeixe') {
+
+            this.fase.game.load(new GameOver());
             this.destroy();
         }
 

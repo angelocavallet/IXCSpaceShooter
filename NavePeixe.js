@@ -5,7 +5,7 @@ class NavePeixe extends GameComponent {
         this.velocidade = options.velocidade || 0.6;
         this.controller = null;
         this.ultimoTiro = new Date();
-        this.tempoEntreTiros = 1500 + Math.floor(Math.random() * 5000);
+        this.tempoEntreTiros = 2000 + Math.floor(Math.random() * 5000);
         this.img = options.img;
 
         this.posXinicial = this.x;
@@ -43,7 +43,7 @@ class NavePeixe extends GameComponent {
     }
 
     podeAtirar() {
-        return ((new Date()).getTime() - this.ultimoTiro.getTime()) > this.tempoEntreTiros;
+        return ((new Date()).getTime() - this.ultimoTiro.getTime()) > this.tempoEntreTiros + Math.floor(Math.random() * 3000);
     }
 
     atirar() {
@@ -79,6 +79,7 @@ class NavePeixe extends GameComponent {
 
     resolveColisao(outro) {
         if (outro.tipo === 'tiroBorn') {
+            outro.destroy();
             this.destroy();
         }
 

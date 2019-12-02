@@ -2,7 +2,6 @@ class Fase {
 
     constructor() {
         this.elementos = [];
-        this.terminou = false;
     }
 
     addElemento(elemento) {

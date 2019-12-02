@@ -79,14 +79,30 @@ class Missao extends Fase {
         }
     }
 
+    verificaInimigosVivos() {
+
+        let inimigosVivos = this.elementos.filter((elemento) => {
+            return elemento.tipo === 'navePeixe' && elemento.ativo;
+        });
+
+        if (!inimigosVivos.length) {
+            this.criaOnda(this.nivel++);
+        }
+    }
+
     update() {
         super.update();
+
+        this.verificaInimigosVivos();
 
         this.game.context.fillStyle = `white`;
 
         this.game.context.font = "normal 14pt ubuntu";
         this.game.context.fillText(`Utilize espaco para atirar e as setas para mover a Nave Born`,
             10, this.game.canvas.height - 10);
+
+        this.game.context.font = "normal 16pt ubuntu";
+        this.game.context.fillText(`Round ${this.nivel}`, 10, 30);
 
     }
 
