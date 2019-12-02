@@ -19,6 +19,7 @@ class NavePeixe extends GameComponent {
 
         this.resolveControles();
         this.render();
+        this.validaColisoes();
 
         return this.ativo;
     }
@@ -50,16 +51,18 @@ class NavePeixe extends GameComponent {
         this.ultimoTiro = new Date();
 
         let tiro = new Bala({
+            fase: this.fase,
             context: this.context,
             width: 5,
             height: 5,
-            velocidade: 2,
+            velocidade: 1,
             sentido: 'sul',
             tipo: 'tiroPeixe',
             x: this.centroX,
             y: this.y + (this.height)
         });
 
+        tiro.fase = this.fase;
         this.fase.addElemento(tiro);
 
 
@@ -69,6 +72,15 @@ class NavePeixe extends GameComponent {
     render() {
 
         this.context.drawImage(this.img, this.x, this.y, this.width, this.height);
+
+        this.context.strokeStyle = 'white';
+        this.context.strokeRect(this.x, this.y, this.width, this.height);
+    }
+
+    resolveColisao(outro) {
+        if (outro.tipo === 'tiroBorn') {
+            this.destroy();
+        }
 
     }
 

@@ -3,10 +3,12 @@ class Missao extends Fase {
     load(nivel) {
 
         this.player = new NaveBorn({
+            fase: this,
             context: this.game.context,
-            width: 50,
+            width: 100,
             height: 100,
             tipo: 'naveBorn',
+            img: document.getElementById('bornImg'),
             x: this.game.canvas.width / 2,
             y: this.game.canvas.height / 1.4
         });
@@ -32,6 +34,7 @@ class Missao extends Fase {
             let pos = this.getMelhorPosicao(qtdInimigos, i, largura, altura);
 
             let inimigo = new NavePeixe({
+                fase: this,
                 context: this.game.context,
                 width: largura,
                 height: altura,
@@ -49,10 +52,10 @@ class Missao extends Fase {
 
         let margem = 10;
         let largMax = this.game.canvas.width;
-        let altMax = this.game.canvas.height - this.player.height - margem;
+        // let altMax = this.game.canvas.height - this.player.height - margem;
 
         let qtdMaxColuna = Math.floor(largMax / (largura + margem));
-        let qtdMaxLinha = Math.floor(altMax / (altura + margem));
+        // let qtdMaxLinha = Math.floor(altMax / (altura + margem));
 
         let minhaLinha = Math.floor(i / qtdMaxColuna);
         let minhaColuna = Math.abs((minhaLinha * qtdMaxColuna) - i);

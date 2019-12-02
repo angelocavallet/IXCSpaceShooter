@@ -2,8 +2,9 @@ class Bala extends GameComponent {
 
     constructor(options) {
         super(options);
-        this.velocidade = options.velocidade || 10;
+        this.velocidade = options.velocidade || 3;
         this.sentido = options.sentido;
+        this.img = options.img;
     }
 
     update() {
@@ -35,13 +36,20 @@ class Bala extends GameComponent {
 
     render() {
 
-        this.context.fillStyle = 'white';
-        //renderizando bala
-        this.context.fillRect(
-            this.x,
-            this.y,
-            this.width,
-            this.height);
+        if (this.img) {
+            this.context.drawImage(this.img, this.x, this.y, this.width, this.height);
+
+        } else {
+            this.context.fillStyle = 'white';
+            this.context.fillRect(
+                this.x,
+                this.y,
+                this.width,
+                this.height);
+
+        }
+        this.context.strokeStyle = 'white';
+        this.context.strokeRect(this.x, this.y, this.width, this.height);
     }
 
 }

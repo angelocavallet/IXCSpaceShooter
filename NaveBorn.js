@@ -3,6 +3,7 @@ class NaveBorn extends GameComponent {
     constructor(options) {
         super(options);
         this.velocidade = options.velocidade || 5;
+        this.img = options.img;
         this.controller = null;
         this.ultimoTiro = new Date();
         this.tempoEntreTiros = 300;
@@ -16,6 +17,7 @@ class NaveBorn extends GameComponent {
 
         this.resolveControles();
         this.render();
+        this.validaColisoes();
 
         return this.ativo;
     }
@@ -48,16 +50,21 @@ class NaveBorn extends GameComponent {
 
         this.ultimoTiro = new Date();
 
+        let larguraTiro = this.img.width * 0.2;
+
         let tiro = new Bala({
+            fase: this.fase,
             context: this.context,
-            width: 5,
-            height: 5,
+            width: larguraTiro,
+            height: this.img.height * 0.2,
             sentido: 'norte',
             tipo: 'tiroBorn',
-            x: this.centroX,
+            img: this.img,
+            x: this.centroX -(larguraTiro * 0.5),
             y: this.y
         });
 
+        tiro.fase = this.fase;
         this.fase.addElemento(tiro);
 
 
@@ -73,16 +80,16 @@ class NaveBorn extends GameComponent {
         let grdCorpo = this.context.createRadialGradient(
             posGrdSombreadoX,
             posGrdSombreadoY,
-            (this.width * 0.5),
+            (this.width * 0.25),
             posGrdSombreadoX,
             posGrdSombreadoY,
-            (this.width * 0.9));
+            (this.width * 0.45));
         grdCorpo.addColorStop(0,'#7c7977');
         grdCorpo.addColorStop(0.5,'#5e5b59');
         grdCorpo.addColorStop(1,'#343434');
         this.context.fillStyle = grdCorpo;
         this.context.beginPath();
-        this.context.arc(this.centroX, this.centroY, this.width,0, 2 * Math.PI);
+        this.context.arc(this.centroX, this.centroY, this.width * 0.5,0, 2 * Math.PI);
         this.context.fill();
 
 
@@ -90,17 +97,27 @@ class NaveBorn extends GameComponent {
         let grdCabine = this.context.createRadialGradient(
             posGrdSombreadoX,
             posGrdSombreadoY,
-            (this.width * 0.2),
+            (this.width * 0.1),
             posGrdSombreadoX,
             posGrdSombreadoY,
-            (this.width * 0.4));
+            (this.width * 0.2));
         grdCabine.addColorStop(0,'#00c2ff');
         grdCabine.addColorStop(0.5,'#0071bc');
         grdCabine.addColorStop(1,'#001985');
         this.context.fillStyle = grdCabine;
         this.context.beginPath();
-        this.context.arc(this.centroX, this.centroY, (this.width * 0.5),0, 2 * Math.PI);
+        this.context.arc(this.centroX, this.centroY, (this.width * 0.25),0, 2 * Math.PI);
         this.context.fill();
+
+        this.context.strokeStyle = 'white';
+        this.context.strokeRect(this.x, this.y, this.width, this.height);
+    }
+
+    resolveColisao(outro) {
+        if (outro.tipo === 'tiroPeixe') {
+            this.destroy();
+        }
+
     }
 
 }
