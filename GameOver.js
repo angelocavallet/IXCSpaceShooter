@@ -5,7 +5,6 @@ class GameOver extends Fase {
         let reinicio = () => {
             this.game.load(new Missao());
 
-            console.log('lolsdf');
             window.removeEventListener('keydown', reinicio);
         };
 
