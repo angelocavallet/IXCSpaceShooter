@@ -27,25 +27,18 @@ class GameComponent {
 
         for (let i = 0; i < this.fase.elementos.length; i++) {
 
-            //ta muito errado ainda kkkk
-            //se for inativo ja sai fora
+            let minAx = this.x;
+            let maxAx = this.x + this.width;
+            let minAy = this.y;
+            let maxAy = this.y + this.height;
+
+            let minBx = this.fase.elementos[i].x;
+            let maxBx = this.fase.elementos[i].x + this.fase.elementos[i].width;
+            let minBy = this.fase.elementos[i].y;
+            let maxBy = this.fase.elementos[i].y + this.fase.elementos[i].height;
+
             if (this.fase.elementos[i].ativo &&
-                //canto noroeste do objeto
-                ((this.x > this.fase.elementos[i].x && this.x < this.fase.elementos[i].x + this.fase.elementos[i].width &&
-                        this.y > this.fase.elementos[i].y && this.y < this.fase.elementos[i].y + this.fase.elementos[i].height) ||
-
-                //canto nordeste
-                (this.x + this.width > this.fase.elementos[i].x && this.x + this.width < this.fase.elementos[i].x + this.fase.elementos[i].width &&
-                    this.y > this.fase.elementos[i].y && this.y < this.fase.elementos[i].y + this.fase.elementos[i].height) ||
-
-                //canto sudeste
-                (this.x + this.width > this.fase.elementos[i].x && this.x + this.width < this.fase.elementos[i].x + this.fase.elementos[i].width &&
-                    this.y + this.height > this.fase.elementos[i].y && this.y + this.height < this.fase.elementos[i].y + this.fase.elementos[i].height) ||
-
-                //canto sudoeste
-                (this.x > this.fase.elementos[i].x && this.x < this.fase.elementos[i].x + this.fase.elementos[i].width &&
-                    this.y + this.height > this.fase.elementos[i].y && this.y + this.height < this.fase.elementos[i].y + this.fase.elementos[i].height))) {
-
+                maxAx >= minBx && minAx <= maxBx && minAy <= maxBy && maxAy >= minBy) {
                 this.resolveColisao(this.fase.elementos[i]);
             }
         }

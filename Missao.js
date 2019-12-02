@@ -2,6 +2,7 @@ class Missao extends Fase {
 
     load(nivel) {
 
+        this.nivel = nivel;
         this.player = new NaveBorn({
             fase: this,
             context: this.game.context,
@@ -25,6 +26,7 @@ class Missao extends Fase {
     }
 
     criaOnda(nivel) {
+
 
         let qtdInimigos = Math.ceil(nivel + (nivel * 1.5));
         let altura = 100;
@@ -70,8 +72,6 @@ class Missao extends Fase {
         } else {
             offsetX = Math.abs((qtdMaxColuna * (largura + margem)) - largMax) / 2;
         }
-
-
 
         return {
             x: ((largura + margem) * minhaColuna) + offsetX,
