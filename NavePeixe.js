@@ -73,8 +73,8 @@ class NavePeixe extends GameComponent {
 
         this.context.drawImage(this.img, this.x, this.y, this.width, this.height);
 
-        this.context.strokeStyle = 'white';
-        this.context.strokeRect(this.x, this.y, this.width, this.height);
+        // this.context.strokeStyle = 'white';
+        // this.context.strokeRect(this.x, this.y, this.width, this.height);
     }
 
     resolveColisao(outro) {

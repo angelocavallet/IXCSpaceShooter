@@ -114,8 +114,8 @@ class NaveBorn extends GameComponent {
         this.context.arc(this.centroX, this.centroY, (this.width * 0.25),0, 2 * Math.PI);
         this.context.fill();
 
-        this.context.strokeStyle = 'white';
-        this.context.strokeRect(this.x, this.y, this.width, this.height);
+        // this.context.strokeStyle = 'white';
+        // this.context.strokeRect(this.x, this.y, this.width, this.height);
     }
 
     resolveColisao(outro) {

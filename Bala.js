@@ -58,8 +58,8 @@ class Bala extends GameComponent {
                 this.height);
 
         }
-        this.context.strokeStyle = 'white';
-        this.context.strokeRect(this.x, this.y, this.width, this.height);
+        // this.context.strokeStyle = 'white';
+        // this.context.strokeRect(this.x, this.y, this.width, this.height);
     }
 
 }
