@@ -2,7 +2,6 @@ class GameOver extends Fase {
 
     load() {
 
-        let game = this.game;
         let reinicio = () => {
             this.game.load(new Missao());
 
