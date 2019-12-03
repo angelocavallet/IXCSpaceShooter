@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>Skatista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        canvas {
+            border: 3px solid #9d9d9d;
+            background-color: #9d9d9d;
+        }
+        .canvas-target {
+            position: fixed;
+        }
+        .assets {
+            display: none;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        let start = () => {
+            let canvas = document.getElementById('gameTarget');
+            let context = canvas.getContext('2d');
+
+            let skatistaImg = document.getElementById('skatistaImg');
+
+            let skatista = {
+                x: 50,
+                y: canvas.height -skatistaImg.height,
+                pulando: false,
+                img: skatistaImg,
+                width: skatistaImg.width,
+                height: skatistaImg.height
+            };
+
+            let obstaculo = {
+                x: canvas.width,
+                y: canvas.height - 150,
+                width: 50,
+                height: 50,
+                velocidade: 10
+            };
+
+
+            let pontos = 0;
+
+            let render = () => {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                let alturaSkatista = skatista.y;
+                if (skatista.pulando) {
+                    alturaSkatista -= 200;
+                }
+
+                context.drawImage(skatista.img, skatista.x, alturaSkatista, skatista.width, skatista.height);
+
+                obstaculo.x -= obstaculo.velocidade;
+
+                if (obstaculo.x < 0) {
+                    pontos++;
+                    obstaculo.velocidade += 2;
+                    obstaculo.x = canvas.width;
+                }
+
+                let minAx = skatista.x;
+                let minAy = alturaSkatista;
+                let maxAx = skatista.x + skatista.width;
+                let maxAy = alturaSkatista + skatista.height;
+
+                let minBx = obstaculo.x;
+                let minBy = obstaculo.y;
+                let maxBx = obstaculo.x + obstaculo.width;
+                let maxBy = obstaculo.y + obstaculo.height;
+
+                if (maxAx >= minBx && maxBx >= minAx &&
+                    maxAy >= minBy && maxBy >= minAy) {
+
+                    pontos = 0;
+                    obstaculo.velocidade = 5;
+                    obstaculo.x = canvas.width;
+                }
+
+
+
+                context.fillStyle = 'black';
+                context.font = 'normal 18px ubuntu';
+                context.fillText(`Pontos: ${pontos}`, 10, 20);
+
+
+                context.strokeRect(skatista.x, alturaSkatista, skatista.width, skatista.height);
+                context.fillRect(obstaculo.x, obstaculo.y, obstaculo.width, obstaculo.height);
+            };
+
+            window.addEventListener('keydown', (event) =>{
+                if (event.key === ' ') {
+                    skatista.pulando = true;
+                }
+            });
+
+            window.addEventListener('keyup', (event) =>{
+
+                if (event.key === ' ') {
+                    skatista.pulando = false;
+                }
+            });
+
+            setInterval(render, 16);
+
+        };
+
+
+    </script>
+</head>
+<body onload="start()">
+<div id="assets" class="assets">
+    <img id="skatistaImg" alt="skatista" src="skatista.png">
+</div>
+<canvas id="gameTarget" class="canvas-target" width="1024" height="600"></canvas>
+</body>
+</html>
